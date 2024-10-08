@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose')
 
 //Instatiate my database
-mongoose.connect('mongodb://localhost:27017/Marketplace', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/Marketplace');
 
 //Instatiate the application
 const app = express();

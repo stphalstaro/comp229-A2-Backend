@@ -17,7 +17,10 @@ router.post('/', productController.createProduct);
 //PUT products (Update a Project)
 router.put('/:id', productController.updateProduct);
 
-//DELETE products (Delete a Project)
+//DELETE one product (Delete a Project)
 router.delete('/:id', productController.deleteProduct);
+
+// DELETE /api/products (to delete all products)
+router.delete('/', productController.deleteAllProducts); 
 
 module.exports = router; //export the router to be used in the server.js file

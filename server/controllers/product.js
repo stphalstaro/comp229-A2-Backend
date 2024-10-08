@@ -74,7 +74,7 @@ exports.updateProduct = async (req, res) => {
     }
 }
 
-//DELETE /api/products/id
+//DELETE one /api/products/id
 exports.deleteProduct = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -82,10 +82,21 @@ exports.deleteProduct = async (req, res) => {
         if(product === null){
             return res.status(404).json({message: "Product was not found"});
         }
-        await product.remove();
+        await Product.findByIdAndDelete(req.params.id);
         res.json({ message: "Product was deleted successfully" });
 
     } catch (error) {
         res.status(500).json({ message: error.message});
     }
 }
+
+// DELETE /api/products
+exports.deleteAllProducts = async (req, res) => {
+    try {
+        const result = await Product.deleteMany({}); // This will delete all products
+        res.status(200).json({ message: `${result.deletedCount} products deleted successfully.` });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
